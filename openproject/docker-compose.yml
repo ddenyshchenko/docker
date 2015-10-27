@@ -1,0 +1,19 @@
+mysql:
+    image: mysql
+    name: openproject-mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_USER=openproject
+        - MYSQL_PASSWORD=openproject
+        - MYSQL_DATABASE=openproject
+    volumes:
+        - /volumes/openproject/mysql:/var/lib/mysql
+
+web:
+    build: .
+    hostname: openproject
+    name: openproject-web
+    links:
+        - mysql:mysql
+    ports:
+        - "80:80"

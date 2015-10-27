@@ -1,0 +1,19 @@
+production:
+   email_delivery_method: "smtp"
+   smtp_address: "localhost"
+   smtp_port: 25
+default:
+  email_delivery_method: :smtp
+  smtp_address: smtp.example.net
+  smtp_port: 25
+  smtp_domain: example.net
+  smtp_authentication: :login
+  smtp_user_name: "openproject@example.net"
+  smtp_password: "my_openproject_password"
+  rails_cache_store: :memcache
+  session_store: :cache_store
+  disable_password_choice: false
+development:
+  email_delivery_method: :letter_opener
+test:
+  email_delivery_method: :test

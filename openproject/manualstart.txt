@@ -1,0 +1,14 @@
+1. Start MySQL db docker
+docker run --name openproject-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=openproject -e MYSQL_PASSWORD=openproject -e MYSQL_DATABASE=openproject -v /volumes/openproject/mysql:/var/lib/mysql -d mysql:latest
+2. Start openproject  
+docker run -d -h openproject --name openproject-web --link openproject-mysql:mysql --p 80:80 -p 443:443 openproject-web
+
+
+FIRST START
+
+su openproject -c "bash -l"
+cd openproject
+bundle exec rake db:migrate && \
+bundle exec rake db:seed && \
+bundle exec rake assets:precompile
+
