@@ -1,0 +1,19 @@
+graphite:
+    build: ./graphite/
+    # image:
+    hostname: graphite
+    ports:
+        - "8080:8080"
+        - "2003:2003"
+        - "22"
+
+grafana:
+    image: grafana/grafana
+    hostname: grafana
+    ports:
+        - "80:3000"
+    links:
+        - "graphite:graphite"
+    environment:
+        # - GF_SERVER_ROOT_URL=http://grafana
+        - GF_SECURITY_ADMIN_PASSWORD=admin
