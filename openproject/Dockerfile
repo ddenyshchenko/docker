@@ -17,7 +17,7 @@ RUN echo root:root | chpasswd
 ENV HOME /root
 
 ADD configs/webapp.conf /etc/nginx/sites-enabled/webapp.conf
-ADD configs/mysql-env.conf /etc/nginx/main.d/postgres-env.conf
+ADD configs/mysql-env.conf /etc/nginx/main.d/mysql-env.conf
 
 USER openproject
 WORKDIR /home/openproject
@@ -28,7 +28,7 @@ RUN git clone https://github.com/opf/openproject.git
 
 WORKDIR /home/openproject/openproject
 
-RUN git checkout stable
+RUN git checkout release/4.2
 
 
 RUN bundle install --path vendor/bundle
