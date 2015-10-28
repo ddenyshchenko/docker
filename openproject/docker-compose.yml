@@ -9,7 +9,8 @@ mysql:
     #     - /volumes/openproject/mysql:/var/lib/mysql
 
 web:
-    build: .
+    # build: .
+    image: ddenyshchenko/openproject
     hostname: openproject
     links:
         - mysql:mysql
