@@ -28,7 +28,7 @@ RUN git clone https://github.com/opf/openproject.git
 
 WORKDIR /home/openproject/openproject
 
-RUN git checkout release/4.2
+RUN git checkout stable/4.2
 
 
 RUN bundle install --path vendor/bundle
