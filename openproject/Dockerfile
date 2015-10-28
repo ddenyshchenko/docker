@@ -1,5 +1,5 @@
 FROM phusion/passenger-full:latest
-MAINTAINER Daniil Denishchenko <ddenyshchenko@intropro.com"
+MAINTAINER Daniil Denishchenko <daniil.denishchenko@gmail.com>
 
 
 RUN rm -f /etc/service/nginx/down && \
