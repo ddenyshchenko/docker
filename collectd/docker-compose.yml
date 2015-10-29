@@ -1,0 +1,11 @@
+collectd:
+    build: .
+    # image: ddenyshchenko/collectd
+    # for example collect metrcis from server1
+    hostname: server1
+    extra_hosts:
+        # use server1 as graphite server
+        - "graphite:172.17.42.1"
+    privileged: true
+    restart: always
+    # command: wget -O /etc/collectd/collectd.conf http://.../collectd.conf && /usr/sbin/collectd -f
