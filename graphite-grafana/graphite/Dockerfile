@@ -4,16 +4,11 @@ RUN apt-get update
 
 # install usefull tools
 RUN apt-get --no-install-recommends -y install \
-                        wget \
-                        unzip \
-                        vim \
-                        openssh-server \
-                        openssh-sftp-server \
-                        openssh-client \
-                        dnsutils \
-                        supervisor \
-                        telnet \
-                        mlocate
+                        # wget \
+                        # openssh-server \
+                        # openssh-sftp-server \
+                        # openssh-client \
+                        supervisor
                         # subversion \
                         # git
 
@@ -35,10 +30,10 @@ RUN apt-get --no-install-recommends -y install \
                         uwsgi
 
 # configure root user and ssh acess
-RUN echo root:root | chpasswd && \
-    sed -i 's/^PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    mkdir /var/run/sshd && \
-    chmod 0755 /var/run/sshd
+RUN echo root:root | chpasswd
+# RUN sed -i 's/^PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+#     mkdir /var/run/sshd && \
+#     chmod 0755 /var/run/sshd
 
 # install graphite
 RUN pip install whisper carbon graphite-web
@@ -68,7 +63,6 @@ RUN python /opt/graphite/webapp/graphite/manage.py syncdb --noinput && \
 RUN chown -R www-data:www-data /opt/graphite/webapp/ /opt/graphite/storage/
 
 # add supervisord config
-ADD run.sh /
 ADD supervisord.conf /etc/
 
 # RUN chmod u+x /run.sh

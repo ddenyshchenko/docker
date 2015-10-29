@@ -1,19 +1,23 @@
 graphite:
     build: ./graphite/
-    # image:
+    # image: ddenyshchenko/graphite
     hostname: graphite
     ports:
+        # graphite-api
         - "8080:8080"
+        # Carbon line receiver
         - "2003:2003"
-        - "22"
+    restart: always
 
 grafana:
     image: grafana/grafana
     hostname: grafana
     ports:
+        # grafana port
         - "80:3000"
     links:
         - "graphite:graphite"
     environment:
         # - GF_SERVER_ROOT_URL=http://grafana
         - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: always
